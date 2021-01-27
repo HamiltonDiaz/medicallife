@@ -1,0 +1,199 @@
+
+.nav-link{
+    display: inline-block;
+    color:#770179 !important;    
+    border-radius: 0.50rem;
+}
+
+.nav-link:hover, .nav-link:focus:before, .nav-link:active:before  {
+    display: inline-block;
+    color:white !important;
+    background-color:#770179 !important;
+    border-color: #770179;
+    border-radius: 0.50rem;
+ }
+
+.logo-medical{
+    width: 200px !important; 
+}
+
+.logo-medical-inicio{
+  width: 400px !important;  
+}
+@media screen and (max-width: 991px) {
+  .logo-medical-inicio{
+    width: 250px !important;  
+  }
+  .mapa{
+    width: 350px !important; 
+  }
+}
+
+
+.bg-registro {
+    font: bold !important;
+    background-color: #770179 !important;
+    color: white !important;
+    border-radius: 0.25rem;
+    border: 1px solid;
+    border-color: #770179;
+    margin-left: 5px;
+}
+
+.bg-registro:hover {
+    background-color: #550083!important;
+    color: white !important;
+    border-color: #550083;
+    border-radius: 0.25rem;
+    border: 1px solid;
+}
+
+.bg-login {
+    color: #770179 !important;
+    border-color: #770179 !important;
+}
+
+.bg-login:hover {
+    color:white !important;
+    background-color:#550083 !important;
+    border-color: #550083 !important;
+}
+
+.dropdown-item:hover, .dropdown-item:focus {
+    display: inline-block;
+    color:white !important;
+    background-color:#770179 !important;
+    border-color: #770179;
+}
+
+
+
+/*Estilos login y register*/
+
+.card {
+    font-size: .875rem;
+  }
+
+
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid #eeeeee;
+    border-radius: 0.25rem;
+  }
+
+  .card {
+    border: 0;
+    margin-bottom: 30px;
+    margin-top: 30px;
+    border-radius: 6px;
+    color: #333333;
+    background: #fff;
+    width: 100%;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+  }
+
+  .card .card-title {
+    margin-top: 0.625rem;
+  }
+  
+  .card .card-title:last-child {
+    margin-bottom: 0;
+  }
+
+  .card .card-body,
+.card .card-footer {
+  padding: 0.9375rem 1.875rem;
+}
+
+.card .card-footer .author,
+.card .card-footer .stats {
+  display: inline-flex;
+}
+
+.card .card-footer .stats {
+  color: #999999;
+}
+
+.card .card-footer .stats .material-icons {
+  position: relative;
+  top: -10px;
+  margin-right: 3px;
+  margin-left: 3px;
+  font-size: 18px;
+}
+
+.card .card-header {
+    border-bottom: none;
+    background: transparent;
+  }
+
+  .card .card-header-primary .card-icon,
+  .card .card-header-primary .card-text,
+  .card .card-header-primary:not(.card-header-icon):not(.card-header-text),
+  .card.bg-primary,
+  .card.card-rotate.bg-primary .front,
+  .card.card-rotate.bg-primary .back {
+    background: linear-gradient(60deg, #ab47bc, #8e24aa);
+  }
+
+  .card [class*="card-header-"],
+.card[class*="bg-"] {
+  color: #fff;
+}
+
+/*fin estilos login y register*/
+
+
+.back-inicio{
+  background-image: url("../img/intrumental.jpg");
+  background-position: center; /* Center the image */
+  background-size: cover; /* Resize the background image to cover the entire container */
+  height: 85vh;  
+  padding: 10%;
+}
+
+.redes{
+  height: 40px;
+  width: 40px;
+}
+
+.footer-medical{
+  background-color: rgba(0, 0, 0, 0.12);
+}
+
+.btn-whatsapp {
+  display:block;
+  width:70px;
+  height:70px;
+  color:#fff;
+  position: fixed;
+  right:20px;
+  bottom:20px;
+  border-radius:50%;
+  line-height:80px;
+  text-align:center;
+  z-index:999;
+}
+
+.ir-inicio{
+  display: none;
+  width: 40px;
+  height: 45px;
+  position: fixed;
+  bottom: 100px;
+  right: 30px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  background-position: 50% 48%;
+  background-color: rgba(35,35,35,0.65);
+  -webkit-transition: all 250ms linear;
+  -moz-transition: all 250ms linear;
+  transition: all 250ms linear;
+}

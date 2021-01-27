@@ -11,6 +11,7 @@
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
+                            <h1>AQUI PONER LOS DATOS DEL USAURIO NOMBRE... PARA PODERLOS MODIFICAR</h1>
                         </div>
                     @endif
 
