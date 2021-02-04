@@ -13,16 +13,16 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{{ url('/#inicio') }}"><span class="fa fa-home"></span> Inicio</a>
+                        <a class="nav-link active" aria-current="page" href="{{ url('/#menu') }}"><span class="fa fa-home"></span> Inicio</a>
                     </li>
     
                     @if (Request::path()!="login" and Request::path()!="register" )
+                         
                             <li class="nav-item">
-                                <a class="nav-link" href="#encuentranos"><span class="fa fa-map-marker"></span> ¿Cómo llegar?</a>
+                                <a class="nav-link" href="#productos"><span class="fa fa-shopping-bag"></span> Productos</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#productos" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Productos
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <li><a class="dropdown-item" href="#">Linea 1</a></li>
@@ -30,11 +30,16 @@
                                     <li><a class="dropdown-item" href="#">Linea 3</a></li>
                                     <li><a class="dropdown-item" href="#">Linea 4</a></li>
                                     <li><a class="dropdown-item" href="#">Linea 5</a></li>
-                                    <li><a class="dropdown-item" href="#">Linea 6</a></li>            
+                                    <li><a class="dropdown-item" href="#">Linea 6</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="#">Ver Todos</a></li>
                                 </ul>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#" tabindex="-1" aria-disabled="true">Contáctenos</a>
+                                <a class="nav-link" href="#encuentranos"><span class="fa fa-map-marker"></span> ¿Cómo llegar?</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/contact" tabindex="-1" aria-disabled="true"><span class="fa fa-envelope-open"></span> Contáctenos</a>
                             </li>                        
                     @endif
                 </ul>

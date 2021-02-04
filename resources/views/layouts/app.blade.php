@@ -26,17 +26,19 @@
          <div class="">
             @yield('content')
         </div>
-        @include('layouts.footers.homeFooter')
+        @if (Request::path()!="login" and Request::path()!="register" and Request::path()!="contact" )
+            @include('layouts.footers.homeFooter')
+        @endif
     </div>
 
     <div class="btn-whatsapp">
-        <a href="https://api.whatsapp.com/send?phone=573208135742&text=Hola%2C%20me%20gustar%C3%ADa%20saber%20m%C3%A1s%20sobre%20tus%20productos" target="_blank">
+        <a href="https://api.whatsapp.com/send?phone=573208178127&text=Hola%2C%20me%20gustar%C3%ADa%20saber%20m%C3%A1s%20sobre%20tus%20productos" target="_blank">
         <img src=" {{asset('img/api-whatsapp.png')}}" style="width: 80px" alt="">
         </a>
 
     </div>
+    <a href="#menu" id="irinicio" class="ir-inicio" style="position: fixed; z-index: 999; display: inline;"><span class="fa fa-home" style="color: white; font-size:40px" ></span></a>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script> 
     <script src=" {{asset('js/functions.js')}}"></script>
-    <a href="#menu" id="irinicio" class="ir-inicio" style="position: fixed; z-index: 999; display: inline;"><span class="fa fa-home" style="color: white; font-size:40px" ></span></a>
 </body>
 </html>
