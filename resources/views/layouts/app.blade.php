@@ -1,14 +1,14 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
+    <link rel="icon" type="image/png" href="{{ asset('img/favicon.png')}}">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    {{-- <meta name="csrf-token" content="{{ csrf_token() }}"> --}}
     <title>{{ __('Medical Life') }}</title>        
-    <link rel="icon" type="image/png" href="{{ asset('img/favicon.png')}}">
 
-    <title>{{ __('Medical Life') }}</title>
+    
     <!-- Fonts -->
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
@@ -39,6 +39,7 @@
     </div>
     <a href="#menu" id="irinicio" class="ir-inicio" style="position: fixed; z-index: 999; display: inline;"><span class="fa fa-home" style="color: white; font-size:40px" ></span></a>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script> 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src=" {{asset('js/functions.js')}}"></script>
 </body>
 </html>

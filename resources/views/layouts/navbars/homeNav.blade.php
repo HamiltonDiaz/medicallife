@@ -25,12 +25,10 @@
                                 <a class="nav-link dropdown-toggle" href="#productos" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item" href="#">Linea 1</a></li>
-                                    <li><a class="dropdown-item" href="#">Linea 2</a></li>
-                                    <li><a class="dropdown-item" href="#">Linea 3</a></li>
-                                    <li><a class="dropdown-item" href="#">Linea 4</a></li>
-                                    <li><a class="dropdown-item" href="#">Linea 5</a></li>
-                                    <li><a class="dropdown-item" href="#">Linea 6</a></li>
+                                    @foreach ($lines as $item)
+                                        <li><a class="dropdown-item" href="#">{{$item->nombre}} </a></li>
+                                    @endforeach
+
                                     <li><hr class="dropdown-divider"></li>
                                     <li><a class="dropdown-item" href="#">Ver Todos</a></li>
                                 </ul>

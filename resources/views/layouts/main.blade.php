@@ -1,75 +1,88 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ __('Medical Life') }}</title>
+    <title>{{ __('Medical Life') }}</title>        
     <link rel="icon" type="image/png" href="{{ asset('img/favicon.png')}}">
-    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
-    <!--     Fonts and icons     -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <!-- Fonts -->
+    
+    <!-- Bootstrap CSS CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
     
-    <link href="{{ asset('css/styles.css')}} " rel="stylesheet">
-    <!-- CSS Files -->
-    <link href="{{ asset('css/material-dashboard.css?v=2.1.1')}}" rel="stylesheet" />
-
-    <body >
-        @auth()
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                @csrf
-            </form>
-            @include('layouts.page_templates.auth')
-        @endauth
-        @guest()
-            @include('layouts.page_templates.guest')
-        @endguest
-        @if (auth()->check())
-
-        @endif
-
-        <!--   Core JS Files   -->
-        <script src="{{ asset('js/core/jquery.min.js')}}"></script>
-        <script src="{{ asset('js/core/popper.min.js')}}"></script>
-        <script src="{{ asset('js/core/bootstrap-material-design.min.js')}}"></script>
-        <script src="{{ asset('js/plugins/perfect-scrollbar.jquery.min.js')}}"></script>
-        <!-- Plugin for the momentJs  -->
-        <script src="{{ asset('js/plugins/moment.min.js')}}"></script>
-        <!--  Plugin for Sweet Alert -->
-        <script src="{{ asset('js/plugins/sweetalert2.js')}}"></script>
-        <!-- Forms Validations Plugin -->
-        <script src="{{ asset('js/plugins/jquery.validate.min.js')}}"></script>
-        <!-- Plugin for the Wizard, full documentation here: https://github.com/VinceG/twitter-bootstrap-wizard -->
-        <script src="{{ asset('js/plugins/jquery.bootstrap-wizard.js')}}"></script>
-        <!--	Plugin for Select, full documentation here: http://silviomoreto.github.io/bootstrap-select -->
-        <script src="{{ asset('js/plugins/bootstrap-selectpicker.js')}}"></script>
-        <!--  Plugin for the DateTimePicker, full documentation here: https://eonasdan.github.io/bootstrap-datetimepicker/ -->
-        <script src="{{ asset('js/plugins/bootstrap-datetimepicker.min.js')}}"></script>
-        <!--  DataTables.net Plugin, full documentation here: https://datatables.net/  -->
-        <script src="{{ asset('js/plugins/jquery.dataTables.min.js')}}"></script>
-        <!--	Plugin for Tags, full documentation here: https://github.com/bootstrap-tagsinput/bootstrap-tagsinputs  -->
-        <script src="{{ asset('js/plugins/bootstrap-tagsinput.js')}}"></script>
-        <!-- Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
-        <script src="{{ asset('js/plugins/jasny-bootstrap.min.js')}}"></script>
-        <!--  Full Calendar Plugin, full documentation here: https://github.com/fullcalendar/fullcalendar    -->
-        <script src="{{ asset('js/plugins/fullcalendar.min.js')}}"></script>
-        <!-- Vector Map plugin, full documentation here: http://jvectormap.com/documentation/ -->
-        <script src="{{ asset('js/plugins/jquery-jvectormap.js')}}"></script>
-        <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
-        <script src="{{ asset('js/plugins/nouislider.min.js')}}"></script>
-      
-        <!-- Library for adding dinamically elements -->
-        <script src="{{ asset('js/plugins/arrive.min.js')}}"></script>
+    {{-- datatable --}}
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/dataTables.bootstrap4.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.6.5/css/buttons.bootstrap4.min.css"/>
+    
  
-        <!-- Chartist JS -->
-        <script src="{{ asset('js/plugins/chartist.min.js')}}"></script>
-        <!--  Notifications Plugin    -->
-        <script src="{{ asset('js/plugins/bootstrap-notify.js')}}"></script>
+    
+    <link href="{{ asset('css/styleSidebar.css')}} " rel="stylesheet">
+    
+    
+    
+</head>
+<body>
+    <div class="wrapper">
+        <!-- Sidebar Holder -->
+        @include('layouts.navbars.adminNav')
+        <!-- Page Content Holder -->
+        <div id="content">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light py-1 my-0">
+                <div class="container-fluid">
+                    <button type="button" id="sidebarCollapse" class="navbar-btn">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                    <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fas fa-align-justify"></i>
+                    </button>
 
-        <script src="{{ asset('js/settings.js')}}"></script>
-        @stack('js')
-    </body>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="nav navbar-nav ml-auto">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="#">Mis Datos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Cerrar Sesion</a>
+                            </li>
+                      
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            @yield('content')
+        </div>
+    </div>
+    
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" ></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    
+    {{-- Datatables --}}
+ 
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.5/js/dataTables.buttons.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.bootstrap4.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.html5.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.print.min.js"></script>
+
+    <script src=" {{asset('js/functions.js')}}"></script>
+
+   @include('layouts.partials.alerts')
+    
+</body>
 </html>

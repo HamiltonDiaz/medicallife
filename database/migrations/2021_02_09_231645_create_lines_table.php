@@ -18,6 +18,8 @@ class CreateLinesTable extends Migration
             $table->string('nombre');
             $table->text('descripcion');
             $table->text('img');
+            $table->string('active',5);
+            $table->string('eliminado',2);
             $table->timestamps();
         });
     }

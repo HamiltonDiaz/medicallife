@@ -17,66 +17,25 @@
     <div class="container text-center py-3" >
         <h1 class="titulos-inicio" style="" >Nuestros Productos</h1>
     </div>
-    <div class="container">
-        <div class="card-group">
-            <div class="card">
-                <img src="{{ asset('img/caja-guante.png')}}" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                    
+    <div class="container ">
+        <div class="card-group ">
+            @foreach ($lines as $item)
+            
+                <div class="card mx-auto mx-1" style="max-width: 15rem;" >
+                    <img src="{{asset('storage/img')}}/{{$item->img}} " class="card-img-top" alt="...">
+                    <div class="card-body ">
+                        <h4 class="card-title text-center">{{$item->nombre}}</h4>
+                        <p class="card-text"> {{$item->descripcion}}</p>
+                        
+                    </div>
+                    <div class="text-center py-2"><a href="" class="btn bg-registro">Ver más</a></div>
                 </div>
-                <div class="text-center py-2"><a href="" class="btn bg-registro">Ver más</a></div>
-            </div>
-            <div class="card">
-                <img src="{{ asset('img/caja-guante.png')}}" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-                    
-                </div>
-                <div class="text-center py-2"><a href="" class="btn bg-registro">Ver más</a></div>
-            </div>
-            <div class="card">
-                <img src="{{ asset('img/caja-guante.png')}}" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-                    
-                </div>
-                <div class="text-center py-2"><a href="" class="btn bg-registro">Ver más</a></div>
-            </div>
+            @endforeach
+
+
         </div>
 
-        <div class="card-group">
-            <div class="card">
-                <img src="{{ asset('img/caja-guante.png')}}" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                    
-                </div>
-                <div class="text-center py-2"><a href="" class="btn bg-registro">Ver más</a></div>
-            </div>
-            <div class="card">
-                <img src="{{ asset('img/caja-guante.png')}}" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-                    
-                </div>
-                <div class="text-center py-2"><a href="" class="btn bg-registro">Ver más</a></div>
-            </div>
-            <div class="card">
-                <img src="{{ asset('img/caja-guante.png')}}" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-                    
-                </div>
-                <div class="text-center py-2"><a href="" class="btn bg-registro">Ver más</a></div>
-            </div>
-        </div>        
+        
     </div>
 
     <div id="encuentranos" class="py-5">

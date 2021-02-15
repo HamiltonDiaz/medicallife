@@ -20,7 +20,12 @@ class CreateProductsTable extends Migration
             $table->string('referencia');
             $table->text('descripcion');            
             $table->text('img');
+            $table->string('eliminado',2);
+            $table->string('active',5);
+            $table->unsignedBigInteger('line_id'); 
             $table->timestamps();
+            
+            $table->foreign('line_id')->references('id')->on('lines');
         });
     }
 
