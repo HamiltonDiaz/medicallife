@@ -60,9 +60,12 @@
                             </div>
 
                             <div class="form-group text-right form-check ">
-                                <input type="checkbox" class="form-check-input" id="active" name="active"  @if (($line->active)=="on") checked @endif >
+                                <input type="radio" id="activeoffon" name="active" value="on" @if (($line->active)=="on") checked @endif >
+                                <label for="male">Activo</label>
+                                <input type="radio" id="activeoff" name="active" value="off" @if (($line->active)=="off") checked @endif>
+                                <label for="female">Inactivo</label>
                                 <input type="hidden" id="activeold" name="activeold"  value="{{$line->active }}" >
-                                <label class="form-check-label" for="active">Activo</label>
+                                
                             </div>
 
                           </div>
@@ -169,7 +172,7 @@
             <tr>
                 <th class="py-4" scope="row">{{$line->id}} </th>
                 <td class="py-4">{{$line->nombre}}</td>
-                <td class="py-4">{{$line->descripcion}}</td>
+                <td class="py-4 text-truncate" style="max-width: 300px">{{$line->descripcion}}</td>
                 @if (($line->active)=="on") 
                     <td class="py-4"><input type="checkbox" checked disabled ></td>
                 @else

@@ -48,6 +48,9 @@ function readURL(input, imgsrc) {
         }
     }
 }
+
+
+
 /*fin previsualizar img */
 
 /*Configurar alertas*/
@@ -131,4 +134,5 @@ $(document).ready(function () {
 });
 
 /*Fin datatables */
+
 

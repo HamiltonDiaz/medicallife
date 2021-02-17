@@ -3,29 +3,59 @@
 @section('content')
 <div class="container">
     <div class="text-center py-3">
-        <h4>Crear línea</h4>
+        <h4>Crear Producto</h4>
     </div>
     <div class="row">
         <div class="col-lg-6">
-            <form class="needs-validation" method="POST" action="{{Route('storeline')}} " enctype="multipart/form-data" autocomplete="off" >
+            <form class="needs-validation" method="POST" action="{{Route('storeproduct')}} " enctype="multipart/form-data" autocomplete="off" >
                 @csrf
-                <div class="form-group">
-                    <label for="name">Nombre</label>
-                    <input type="text" class="form-control" id="name" name="name" placeholder="Escriba el nombre de la línea" required>
+                <div class="form-group ">                                
+                    <div class="row">
+                        <div class="col ">
+                            <label for="name">Nombre</label>
+                        </div>
+                        <div class="col text-right">
+                            <input type="checkbox" class="" id="active" name="active"  checked required>
+                            <label class="form-check-label" for="active">Activo</label>
+                        </div>
+                    </div>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Escriba el nombre del producto" required>
                 </div>
 
+                <div class="form-group">                    
+                    <label for="linea">Linea</label>
+                    <select class="form-control" id="linea" name="linea" required>
+                        <option value="" selected disabled>Seleccione</option>
+                        @foreach ($lines as $item)
+                            <option value="{{$item->id}}">{{$item->nombre}}</option>
+                        @endforeach
+                    </select>
+                </div>
                 <div class="form-group">
                     <label for="descrip">Descripción</label>
                     <textarea class="form-control" id="descrip" name="descrip" rows="3" placeholder="Escriba la descripción de la línea" value="" ></textarea>
                 </div>
+                <div class="form-group row">
+                    <div class="col-lg-6 col-md-12 col-sm-12 col-12">
+                       <label for="referencia">Referencia</label>
+                       <input type="text" class="form-control" id="referencia" name="referencia" placeholder="#Ref" required >
+                    </div>
+                    <div class="col-lg-6 col-md-12 col-sm-12 col-12">
+                        <label for="precio">Precio</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">$</span>
+                            </div>                                        
+                            <input id="precio" name="precio" type="number" min="0" class="form-control" aria-label="Amount (to the nearest dollar)">
+                        </div>
+                    </div>
+                </div>
+
                 <div class="form-group">
                     <label for="imgpreview">Seleccione</label>
                     <input type="file" class="form-control-file" id="imgpreview" name="imgpreview" required onchange="readURL(this,'#viewimg')">
                 </div>
-                <div class="form-group form-check">
-                    <input type="checkbox" class="form-check-input" id="active" name="active"  checked required>
-                    <label class="form-check-label" for="active"  >Activo</label>
-                </div>
+
                 <div class="form-group">
                     <button class="btn btn-primary col-lg-12 col-md-12 col-sm-12 col-12" type="submit">
                         <i class="fa fa-plus-square" ></i> Crear

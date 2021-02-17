@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Line;
+use App\Models\product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
@@ -42,7 +43,6 @@ class LineController extends Controller
      */
     public function store(Request $request)
     {
-        //
         //Validar que sea una imagen
         $descrip="";
         if ($request->input('descrip')) {
@@ -99,8 +99,7 @@ class LineController extends Controller
     public function show(Line $line, $id)
     {
         //
-        $p=DB::table('lines')->whereId($id)->first();
-        
+        $p=DB::table('lines')->where($id)->first();        
         dd($p);
     }
 
@@ -111,9 +110,7 @@ class LineController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(Line $line,Request $request)
-    {
-        //dd($request);
-        
+    {        
         $descrip="";
         if ($request->input('descrip')) {
             $descrip=$request->input('descrip');

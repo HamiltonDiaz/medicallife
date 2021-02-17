@@ -23,10 +23,10 @@
                     <a href="#productMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Productos</a>
                     <ul class="collapse list-unstyled" id="productMenu">
                         <li>
-                            <a href="#">Ver productos</a>
+                            <a href="{{Route("products")}} ">Ver productos</a>
                         </li>
                         <li>
-                            <a href="#">Crear producto</a>
+                            <a href="{{Route("createproduct")}}">Crear producto</a>
                         </li>
                         
                     </ul>

@@ -3,7 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\contactenos;
+use App\Models\product;
+use App\Models\Line;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 
 class ContactenosController extends Controller
 {
@@ -14,7 +19,10 @@ class ContactenosController extends Controller
      */
     public function index()
     {
-        return view('contact');
+
+        $lines= DB::select("SELECT id, nombre, descripcion, img, active	FROM medicallife.lines  WHERE eliminado='0'");
+        return view("contact", compact('lines'));
+        
     }
 
     /**

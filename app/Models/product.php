@@ -11,8 +11,12 @@ class product extends Model
 
     protected $fillable = [
         'nombre',
+        'precio',
+        'referencia',
         'descripcion',
         'img',
+        'eliminado',
         'active',
+        'line_id'
     ];
 }

@@ -16,29 +16,36 @@
                         <a class="nav-link active" aria-current="page" href="{{ url('/#menu') }}"><span class="fa fa-home"></span> Inicio</a>
                     </li>
     
+                    @if (Request::path()!="welcome")
+                        @php                        
+                            $ruta="/"
+                        @endphp
+                    @else
+                        @php
+                            $ruta=""
+                        @endphp
+                    @endif
                     @if (Request::path()!="login" and Request::path()!="register" )
-                         
-                            <li class="nav-item">
-                                <a class="nav-link" href="#productos"><span class="fa fa-shopping-bag"></span> Productos</a>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#productos" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <div class="btn-group">
+                                <a class="nav-link" href="{{$ruta}}#productos"><span class="fa fa-shopping-bag"></span> Productos</a>
+                                <button type="button" class="btn nav-link dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
+                                    <span class="sr-only">Toggle Dropdown</span>
+                                </button>
+                                <div class="dropdown-menu">
                                     @foreach ($lines as $item)
-                                        <li><a class="dropdown-item" href="#">{{$item->nombre}} </a></li>
+                                        <a class="dropdown-item" href="/us/lines/{{$item->id}}">{{$item->nombre}} </a>
                                     @endforeach
-
-                                    <li><hr class="dropdown-divider"></li>
-                                    <li><a class="dropdown-item" href="#">Ver Todos</a></li>
-                                </ul>
+                                     <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="/us/lines/0">Ver todos</a>
+                                </div>
+                            </div>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{$ruta}}#encuentranos"><span class="fa fa-map-marker"></span> ¿Cómo llegar?</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#encuentranos"><span class="fa fa-map-marker"></span> ¿Cómo llegar?</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="/contact" tabindex="-1" aria-disabled="true"><span class="fa fa-envelope-open"></span> Contáctenos</a>
-                            </li>                        
+                                <a class="nav-link" href="{{route('contact')}}" tabindex="-1" aria-disabled="true"><span class="fa fa-envelope-open"></span> Contáctenos</a>
+                            </li>              
                     @endif
                 </ul>
                 <div class="d-flex align-items-end">
