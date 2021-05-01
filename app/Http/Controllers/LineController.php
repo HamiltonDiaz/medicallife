@@ -20,7 +20,8 @@ class LineController extends Controller
     public function index()
     {
         
-        $lines= DB::select("SELECT id, nombre, descripcion, img, active	FROM medicallife.lines  WHERE eliminado='0'");
+        //$lines= DB::select("SELECT id, nombre, descripcion, img, active	FROM lines WHERE eliminado='0'");
+        $lines= Line::select("id", "nombre", "descripcion", "img", "active")->where("eliminado","=",0)->get();
         return view("lines.listLines", compact('lines'));
         
     }

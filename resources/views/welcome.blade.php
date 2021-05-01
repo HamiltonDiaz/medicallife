@@ -21,9 +21,9 @@
     <div class="container">
         <div class="d-flex justify-content-center aling-items-center">
             <div class="card-deck ">
-                @foreach ($lines as $item)                
-                    <div class="card" style="max-width: 20rem;" >
-                        <img src="{{asset('storage/img')}}/{{$item->img}} " class="card-img-top" alt="...">
+                @foreach ($lines as $item)   
+                    <div class="card" style="max-width: 15rem;" >
+                        <img src="{{asset('storage/img')}}/{{$item->img}} " class="card-img-top" alt="..." height="180">
                         <div class="card-body ">
                             <h4 class="card-title text-center">{{$item->nombre}}</h4>
                             <p class="card-text text-truncate"> {{$item->descripcion}}</p>                        

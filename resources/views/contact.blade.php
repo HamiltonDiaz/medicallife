@@ -2,33 +2,32 @@
 @section('content')
 <div class="container">
     <div class="row py-3 px-3 ">
-
         <div class="col-lg-6">
-            <form class="row g-3 needs-validation" novalidate>
+            <form class="row g-3 needs-validation" novalidate action="{{route("sendcontact")}}" method="POST" >
                 @csrf
                 <div class="col-lg-12 col-md-12 col-sm-12 col-12">
-                    <label for="01" class="form-label">Nombre o Razón Social</label>
-                    <input type="text" class="form-control" id="01" required>
+                    <label for="nombre" class="form-label">Nombre o Razón Social</label>
+                    <input type="text" class="form-control" id="nombre" name="nombre" required>
                 </div>
                 <div class="col-lg-12 col-md-12 col-sm-12 col-12">
-                    <label for="Username" class="form-label">Email</label>
+                    <label for="email" class="form-label">Email</label>
                     <div class="input-group">
                         <span class="input-group-text" id="inputGroupPrepend2">@</span>
-                        <input type="text" class="form-control" id="Username" aria-describedby="inputGroupPrepend2"
+                        <input type="text" class="form-control" name="email" id="email" aria-describedby="inputGroupPrepend2"
                             required>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-12 col-12">
-                    <label for="Username" class="form-label">Teléfono</label>
+                    <label for="telefono" class="form-label">Teléfono</label>
                     <div class="input-group">
-                        <input type="number" class="form-control" aria-label="Dollar amount (with dot and two decimal places)"
+                        <input type="number" name="telefono" class="form-control" aria-label="Dollar amount (with dot and two decimal places)"
                             required>
                         <i class="input-group-text"> <span class="fa fa-phone"></span></i>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-12 col-12">
-                    <label for="04" class="form-label">Asunto</label>
-                    <select class="form-select" id="04" required>
+                    <label for="asunto" class="form-label">Asunto</label>
+                    <select class="form-control" id="asunto" name="asunto" required>
                         <option selected disabled value="">Seleccione</option>
                         <option>Lista de precios</option>
                         <option>Solicitud información</option>
@@ -39,24 +38,25 @@
                     </select>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-12 col-12">
-                    <label for="05" class="form-label">Departamento</label>
-                    <input type="text" class="form-control" id="05" required>
+                    <label for="dpto" class="form-label">Departamento</label>
+                    <input type="text" name="dpto" class="form-control" id="dpto" required>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-12 col-12">
-                    <label for="05" class="form-label">Ciudad</label>
-                    <input type="text" class="form-control" id="05" required>
+                    <label for="citudad" class="form-label">Ciudad</label>
+                    <input type="text" name="ciudad" class="form-control" id="ciudad" required>
                 </div>
                 <div class="col-12">
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="invalidCheck2" required>
+                        <input class="form-check-input" name="habeas" type="checkbox" checked id="invalidCheck2" required>
                         <label class="form-check-label" for="invalidCheck2">
                             Acepto Habeas data y Protección de datos
                         </label>
                     </div>
                 </div>
                 <div class="col-lg-12 col-md-12 col-sm-12 col-12">
-                    <button class="btn btn-success col-lg-12 col-md-12 col-sm-12 col-12" type="submit"><i
-                            class="fa fa-paper-plane" aria-hidden="true"></i> Enviar</button>
+                    <button class="btn btn-success col-lg-12 col-md-12 col-sm-12 col-12" type="submit">
+                        <i class="fa fa-paper-plane" aria-hidden="true"></i> Enviar
+                </button>
                 </div>
             </form>
         </div>
@@ -95,5 +95,12 @@
     </div>
     
 </div>
-    
+@if (Session::has('status'))
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+    <strong>{{Session::get('status')}}</strong>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+    </button>
+</div>                       
+@endif  
 @endsection

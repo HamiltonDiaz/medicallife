@@ -29,5 +29,7 @@ Route::get('admin/products/delete/{id}', [App\Http\Controllers\ProductController
 Route::get('/', [App\Http\Controllers\WelcomeController::class, 'index'])->name('welcome');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/contact', [App\Http\Controllers\ContactenosController::class, 'index'])->name('contact');
+Route::post('/sendcontact', [App\Http\Controllers\ContactenosController::class, 'send'])->name('sendcontact');
 Route::get('/us/lines/{line}', [App\Http\Controllers\ProductController::class, 'showGroup'])->name('usproducts');
 Route::get('/us/product/{id}', [App\Http\Controllers\ProductController::class, 'show'])->name('oneproduct');
+Route::get('/us/product', [App\Http\Controllers\ProductController::class, 'filtrarProductos'])->name('filterproduct');

@@ -1,8 +1,4 @@
-
-
-
 @extends('layouts.main')
-
 
 @foreach ($lines as $line)
 

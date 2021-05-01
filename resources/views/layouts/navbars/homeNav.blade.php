@@ -1,5 +1,5 @@
-<div class="" style="">
-    <nav id="menu" class="navbar navbar-expand-lg navbar-light" style="background-color: white;" >
+
+    <nav id="menu" class="navbar navbar-expand-lg navbar-light bg-light mx-0 py-0" >
         <div class="container-fluid">
             
             @if (Request::path()!="login" and Request::path()!="register" and Request::path()!="home" )
@@ -7,11 +7,11 @@
                     <img  class="logo-medical collapse navbar-collapse " src="{{ asset('img/logo.png')}} " alt="Logo" >
                 </a>
             @endif
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
+                <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="{{ url('/#menu') }}"><span class="fa fa-home"></span> Inicio</a>
                     </li>
@@ -29,10 +29,10 @@
                             <div class="btn-group">
                                 <a class="nav-link" href="{{$ruta}}#productos"><span class="fa fa-shopping-bag"></span> Productos</a>
                                 <button type="button" class="btn nav-link dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"
-                                    aria-haspopup="true" aria-expanded="false">
+                                style="max-width: 15px; max-height:50px" aria-haspopup="true" aria-expanded="false">
                                     <span class="sr-only">Toggle Dropdown</span>
                                 </button>
-                                <div class="dropdown-menu">
+                                <div class="dropdown-menu" >
                                     @foreach ($lines as $item)
                                         <a class="dropdown-item" href="/us/lines/{{$item->id}}">{{$item->nombre}} </a>
                                     @endforeach
@@ -81,5 +81,4 @@
                 </div>
             </div>
         </div>
-    </nav>   
-</div>
+    </nav>

@@ -6,6 +6,7 @@ use App\Models\product;
 use App\Models\Line;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
 
@@ -19,31 +20,42 @@ class ProductController extends Controller
     public function index()
     {
         $consulta="SELECT  pr.id, pr.nombre, pr.precio, pr.referencia, pr.descripcion, pr.img, pr.active, ln.nombre AS linea, ln.id AS id_line
-        FROM medicallife.products pr\n
-        LEFT JOIN medicallife.lines LN ON ln.id = pr.line_id\n
+        FROM medical.products pr\n
+        LEFT JOIN medical.lines ln ON ln.id = pr.line_id\n
         WHERE pr.eliminado='0' AND ln.eliminado='0'";
         $products=DB::select($consulta) ;
-        $lines= DB::select("SELECT id, nombre, descripcion, img, active	FROM medicallife.lines  WHERE eliminado='0'");
+        $lines= Line::select("id", "nombre", "descripcion", "img", "active")->where("eliminado","=",0)->get();
+        $lines= DB::select("SELECT id, nombre, descripcion, img, active	FROM medical.lines WHERE eliminado='0'");
         return view("products.listProducts", compact('lines','products'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function filtrarProductos(Request $request){
+        if ($request->linea){            
+            $lineas="";
+            foreach ($request->linea as $line) {
+                if ($lineas==""){
+                    $lineas=$line;    
+                }
+                if($lineas!=$line){
+                    $lineas= $lineas . ",". $line;
+                }
+            }
+            $products=DB::select("SELECT *, (SELECT nombre FROM medical.lines where id=line_id) as linea FROM medical.products WHERE line_id IN ($lineas) AND eliminado=0 ORDER BY line_id");
+        }else{
+            $products=array();
+        }
+        $filtro=1;
+        $lines= Line::select("id", "nombre", "descripcion", "img", "active")->where("eliminado","=",0)->get();
+        return view("products.listProductUser", compact('products', 'lines','filtro'));
+    }
+
     public function create()
     {
-        $lines= DB::select("SELECT id, nombre, descripcion, img, active	FROM medicallife.lines  WHERE eliminado='0'");
+        //$lines= DB::select("SELECT id, nombre, descripcion, img, active	FROM lines  WHERE eliminado='0'");
+        $lines= Line::select("id", "nombre", "descripcion", "img", "active")->where("eliminado","=",0)->get();
         return view('products.createProducts',compact('lines'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         //dd($request);
@@ -94,53 +106,34 @@ class ProductController extends Controller
         return redirect("admin/products")->with($notification);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\product  $product
-     * @return \Illuminate\Http\Response
-     */
+
     public function show(product $product, $id)
     {
-        $producto=DB::table('products')->whereId($id)->first();
-        //dd($producto);
-        $lines= DB::select("SELECT id, nombre, descripcion, img, active FROM medicallife.lines  WHERE eliminado='0'");
+        $producto=product::where("id","=",$id);
+        $lines= Line::where("eliminado=0");
         return view("products.productUser", compact('producto','lines'));
     }
 
-        /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\product  $product
-     * @return \Illuminate\Http\Response
-     */
     public function showGroup(product $product, $line)
     {
+        $consulta="SELECT pr.id, pr.nombre, pr.precio, pr.referencia, pr.descripcion, pr.img, ln.nombre AS linea
+        FROM medical.products pr\n
+        LEFT JOIN medical.lines ln ON ln.id = pr.line_id\n
+        WHERE pr.eliminado='0' AND pr.ACTIVE='on'";
 
-        $consulta="SELECT  pr.id, pr.nombre, pr.precio, pr.referencia, pr.descripcion, pr.img, ln.nombre AS linea
-        FROM medicallife.products pr\n
-        LEFT JOIN medicallife.lines LN ON ln.id = pr.line_id\n
-        WHERE pr.eliminado='0' AND pr.ACTIVE='on' ";
-
-        
+        $filtro=2;
         if ($line>0) {
             $consulta= $consulta . " AND line_id=$line";
+            $filtro=0;
         }
-        $lines= DB::select("SELECT id, nombre, descripcion, img, active	FROM medicallife.lines  WHERE eliminado='0'");
+        $lines= Line::select("id", "nombre", "descripcion", "img", "active")->where("eliminado","=",0)->get();
         $products= DB::select($consulta);
         
-        return view("products.listProductUser", compact('products', 'lines'));
+        return view("products.listProductUser", compact('products', 'lines', 'filtro'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\product  $product
-     * @return \Illuminate\Http\Response
-     */
     public function edit(product $product, Request $request)
     {
-
         $alertType="success";
         $msg="Modificado exitosamente!\\n";
 
@@ -166,7 +159,6 @@ class ProductController extends Controller
         if ($request->input('descrip')) {
             $descrip=$request->input('descrip');
         }
-
 
         if ($request->input('name') && $request->input('linea')  && $request->input('id') && $request->input('referencia') ) {
             product::whereId($request->input('id'))->update([
@@ -195,24 +187,11 @@ class ProductController extends Controller
         return redirect("admin/products")->with($notification);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\product  $product
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, product $product)
     {
         
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\product  $product
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(product $product, $id)
     {
         $alertType="warning";
