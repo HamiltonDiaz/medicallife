@@ -19,12 +19,8 @@
     
     {{-- datatable --}}
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/dataTables.bootstrap4.min.css"/>
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.6.5/css/buttons.bootstrap4.min.css"/>
-    
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.6.5/css/buttons.bootstrap4.min.css"/>    
     <link href="{{ asset('css/styleAdmin.css')}} " rel="stylesheet">
-    
-    
-    
 </head>
 <body>
     <div class="wrapper">
@@ -46,12 +42,23 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="nav navbar-nav ml-auto">
                             <li class="nav-item active">
-                                <a class="nav-link" href="#">Mis Datos</a>
+                               <div class="dropdown m-1">
+                                   <button class="btn bg-registro dropdown-toggle mx-3" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                       {{ Auth::user()->name }}
+                                   </button>
+                                   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                     <a class="dropdown-item" href="{{ url('/home') }}">Mis datos</a>
+                                     <a class="dropdown-item" href="#"
+                                               onclick="event.preventDefault();
+                                               document.getElementById('logout-form').submit();">
+                                               {{ __('Salir') }}
+                                       </a>
+                                   </div>
+                               </div>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Cerrar Sesion</a>
-                            </li>
-                      
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
                         </ul>
                     </div>
                 </div>

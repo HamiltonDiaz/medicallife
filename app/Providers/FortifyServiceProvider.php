@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Fortify\Fortify;
+use App\Models\Line;
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -60,7 +61,8 @@ class FortifyServiceProvider extends ServiceProvider
         });
 
         Fortify::resetPasswordView(function ($request) {
-            return view('auth.passwords.reset', ['request' => $request]);
+            $lines= Line::where("eliminado","=",'0')->get();
+            return view('auth.passwords.reset', ['request' => $request, 'lines'=>$lines]);
         });
         
         Fortify::verifyEmailView(function () {

@@ -25,7 +25,7 @@
                             $ruta=""
                         @endphp
                     @endif
-                    @if (Request::path()!="login" and Request::path()!="register" )
+                    @if (Request::path()!="login" and Request::path()!="register" and Request::path()!="forgot-password" )
                             <div class="btn-group">
                                 <a class="nav-link" href="{{$ruta}}#productos"><span class="fa fa-shopping-bag"></span> Productos</a>
                                 <button type="button" class="btn nav-link dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"
