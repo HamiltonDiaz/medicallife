@@ -18,7 +18,7 @@
                 
                 <div class="text-right" >
                     <b>Precio:</b>
-                    <a class="btn btn-success" href="https://api.whatsapp.com/send?phone=573208178127&text=Hola%2C%20me%20gustar%C3%ADa%20saber%20m%C3%A1s%20sobre%20este%20producto%20{{$product->nombre}}%20{{route('welcome').'/us/product/'. $product->id}}" target="_blank"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+                    <a class="btn btn-success" href="https://api.whatsapp.com/send?phone={{env('WHATSAPP_NUMBER')}}&text=Hola%2C%20me%20gustar%C3%ADa%20saber%20m%C3%A1s%20sobre%20este%20producto%20{{$product->nombre}}%20{{route('welcome').'/us/product/'. $product->id}}" target="_blank"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
                 </div>
             </div>
             <div class="modal-footer">

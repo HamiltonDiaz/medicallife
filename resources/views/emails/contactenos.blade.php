@@ -14,11 +14,12 @@
     
         <p>
             Hola soy  <strong> {{$nombre}} </strong>y me estoy contactando con ustedes desde <a href="www.medicallife.com.co">www.medicallife.com.co</a> y estoy interesado en
-            <strong class="text-success">{{$asunto}} </strong>. Mis datos son:
+            <strong class="text-success">{{$asunto}}</strong>.
         </p>
         <ul>
-            <li>Teléfono {{$telefono}} </li>
-            <li>Email {{$email}} </li>
+          <li>Descripción {{$descripcion}} </li>
+          <li>Teléfono {{$telefono}} </li>
+          <li>Email {{$email}} </li>
         </ul>
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" ></script>

@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 //Vistas administrador
 
 //-Lineas
-Route::get('/admin', function () {
+Route::get('/adminmedical', function () {
     return view('homeadmin');
 });
 Route::get('admin/lines', [App\Http\Controllers\LineController::class, 'index'])->name('lines');

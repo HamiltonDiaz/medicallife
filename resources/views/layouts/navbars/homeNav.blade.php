@@ -50,23 +50,24 @@
                 </ul>
                 <div class="d-flex align-items-end">
                     @if (Route::has('login'))
-                        @auth                      
-                            <div class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    {{ Auth::user()->name }}
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item" href="{{ url('/home') }}">Mis Datos</a></li>
-                                    <li><a class="dropdown-item" href="#"
+                        @auth
+
+                        <div class="dropdown">
+                            <button class="btn bg-registro dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                {{ Auth::user()->name }}
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                              <a class="dropdown-item" href="{{ url('/home') }}">Mis datos</a>
+                              <a class="dropdown-item" href="#"
                                         onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();">
                                         {{ __('Salir') }}
-                                    </a></li>                                                       
-                                </ul>
+                                </a>
                             </div>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                @csrf
-                            </form>
+                        </div> 
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
 
                         @else
                             <div class="d-flex ">

@@ -31,12 +31,13 @@ class ContactenosController extends Controller
     {
         $asunto = "Contáctenos WebSite";
         $para=env('MAIL_USERNAME');
-        $copia = $request->email;
-        Mail::send('emails.contactenos',$request->all(), function($msj) use($asunto,$para,$copia){
+        Mail::send('emails.contactenos',$request->all(), function($msj) use($asunto,$para){
             $msj->subject($asunto);
             $msj->to($para);
-            $msj->cc($copia);
+           
         });
+
+        return back()->with('status',"Enviado correctamente");
 
     }
 }

@@ -33,8 +33,8 @@
     </div>
 
     <div class="btn-whatsapp">
-        <a href="https://api.whatsapp.com/send?phone=573208178127&text=Hola%2C%20me%20gustar%C3%ADa%20saber%20m%C3%A1s%20sobre%20tus%20productos" target="_blank">
-        <img src=" {{asset('img/api-whatsapp.png')}}" style="width: 80px" alt="">
+        <a href="https://api.whatsapp.com/send?phone={{env('WHATSAPP_NUMBER')}}&text=Hola%2C%20me%20gustar%C3%ADa%20saber%20m%C3%A1s%20sobre%20tus%20productos" target="_blank">
+        <img src=" {{asset('img/api-whatsapp.png')}}" style="width: 65px" alt="">
         </a>
 
     </div>

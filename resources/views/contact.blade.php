@@ -3,6 +3,14 @@
 <div class="container">
     <div class="row py-3 px-3 ">
         <div class="col-lg-6">
+            @if (Session::has('status'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>{{Session::get('status')}}</strong>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>                       
+            @endif
             <form class="row g-3 needs-validation" novalidate action="{{route("sendcontact")}}" method="POST" >
                 @csrf
                 <div class="col-lg-12 col-md-12 col-sm-12 col-12">
@@ -21,7 +29,7 @@
                     <label for="telefono" class="form-label">Teléfono</label>
                     <div class="input-group">
                         <input type="number" name="telefono" class="form-control" aria-label="Dollar amount (with dot and two decimal places)"
-                            required>
+                         min="0" required>
                         <i class="input-group-text"> <span class="fa fa-phone"></span></i>
                     </div>
                 </div>
@@ -46,6 +54,10 @@
                     <input type="text" name="ciudad" class="form-control" id="ciudad" required>
                 </div>
                 <div class="col-12">
+                    <label for="descripcion" class="form-label">Descripción</label>
+                    <textarea class="form-control" id="descripcion" name="descripcion" required></textarea>                    
+                </div>                
+                <div class="col-12">
                     <div class="form-check">
                         <input class="form-check-input" name="habeas" type="checkbox" checked id="invalidCheck2" required>
                         <label class="form-check-label" for="invalidCheck2">
@@ -59,6 +71,7 @@
                 </button>
                 </div>
             </form>
+
         </div>
         <div class="col-lg-5 text-center">
             <div class="col-lg-12 col-md-12 col-sm-12 col-12">
@@ -95,12 +108,5 @@
     </div>
     
 </div>
-@if (Session::has('status'))
-<div class="alert alert-success alert-dismissible fade show" role="alert">
-    <strong>{{Session::get('status')}}</strong>
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-    </button>
-</div>                       
-@endif  
+
 @endsection
