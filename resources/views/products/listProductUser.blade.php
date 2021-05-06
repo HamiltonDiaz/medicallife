@@ -40,8 +40,8 @@
         {{-- <form action="" method="GET" > --}}
             @csrf
             <div class="form-group">
-                <label for="producto">Producto</label>
-                <input type="text" class="form-control" name="producto" id="producto" placeholder="Escribe aquí">                
+                <label for="findprod">Producto</label>
+                <input type="text" class="form-control" name="findprod" id="findprod" placeholder="Escribe aquí">                
             </div>
             @foreach ($lines as $item)                
                 <div class="form-check">
@@ -113,6 +113,17 @@
                 
             </div>        
         </div>
+        
+        @if ($products)
+            {{$products->appends(['findprod'=>$_GET["findprod"] ,'linea'=>$_GET["linea"] ])->links()}}           
+        @endif
+        
+        <style>
+            .w-5{
+                display: none;
+            }
+        </style>
+
     </div>
 </div>
 

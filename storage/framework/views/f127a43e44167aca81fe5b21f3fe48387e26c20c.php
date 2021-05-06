@@ -26,10 +26,10 @@
                         ?>
                     <?php endif; ?>
                     <?php if(Request::path()!="login" and Request::path()!="register" and Request::path()!="forgot-password" ): ?>
-                            <div class="btn-group">
+                            <div class="btn-group ">
                                 <a class="nav-link" href="<?php echo e($ruta); ?>#productos"><span class="fa fa-shopping-bag"></span> Productos</a>
                                 <button type="button" class="btn nav-link dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"
-                                style="max-width: 15px; max-height:50px" aria-haspopup="true" aria-expanded="false">
+                                style="max-width: 20px; max-height:50px; padding-left: 4px; padding-right:4px " aria-haspopup="true" aria-expanded="false">
                                     <span class="sr-only">Toggle Dropdown</span>
                                 </button>
                                 <div class="dropdown-menu" >

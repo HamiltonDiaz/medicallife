@@ -40,10 +40,16 @@ class ProductController extends Controller
                     $lineas= $lineas . ",". $line;
                 }
             }
-            $products=DB::select("SELECT *, (SELECT nombre FROM medical.lines where id=line_id) as linea FROM medical.products WHERE line_id IN ($lineas) AND eliminado=0 ORDER BY line_id");
+            // $products=DB::select("SELECT *, (SELECT nombre FROM medical.lines where id=line_id) as linea FROM medical.products WHERE line_id IN ($lineas) AND eliminado=0 ORDER BY line_id");
+            $products=DB::table("products as pr")
+            ->select("*",
+            DB::raw("(SELECT ln.nombre FROM medical.lines as ln where ln.id=pr.line_id) as linea"))
+            ->whereIn("pr.line_id",$request->linea)->where("pr.eliminado",0)
+            ->orderBy("pr.line_id")->paginate(2);
         }else{
             $products=array();
         }
+        
         $filtro=1;
         $lines= Line::select("id", "nombre", "descripcion", "img", "active")->where("eliminado","=",0)->get();
         return view("products.listProductUser", compact('products', 'lines','filtro'));
@@ -97,13 +103,13 @@ class ProductController extends Controller
                 'message' => $msg,
                 'alert-type'=>$alertType
             );
-            return redirect("admin/products")->with($notification);
+            return redirect("admin-medical/products")->with($notification);
         }
         $notification=array(
             'message' => $msg,
             'alert-type'=>$alertType
         );
-        return redirect("admin/products")->with($notification);
+        return redirect("admin-medical/products")->with($notification);
     }
 
 
@@ -178,13 +184,13 @@ class ProductController extends Controller
                 'message' => $msg,
                 'alert-type'=>$alertType
             );
-            return redirect("admin/products")->with($notification);
+            return redirect("admin-medical/products")->with($notification);
         }
         $notification=array(
             'message' => $msg,
             'alert-type'=>$alertType
         );
-        return redirect("admin/products")->with($notification);
+        return redirect("admin-medical/products")->with($notification);
     }
 
     public function update(Request $request, product $product)
@@ -210,6 +216,6 @@ class ProductController extends Controller
             'message' => $msg,
             'alert-type'=>$alertType
         );
-        return redirect("admin/products")->with($notification);
+        return redirect("admin-medical/products")->with($notification);
     }
 }

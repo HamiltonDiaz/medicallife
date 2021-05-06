@@ -63,7 +63,7 @@ class LineController extends Controller
                 'message' => $msg,
                 'alert-type'=>$alertType
             );
-            return redirect("admin/lines")->with($notification);
+            return redirect("admin-medical/lines")->with($notification);
         }
         
         if ($request->input('name') && $request->input('active')) {
@@ -82,13 +82,13 @@ class LineController extends Controller
                 'message' => $msg,
                 'alert-type'=>$alertType
             );
-            return redirect("admin/lines")->with($notification);
+            return redirect("admin-medical/lines")->with($notification);
         }
         $notification=array(
             'message' => $msg,
             'alert-type'=>$alertType
         );
-        return redirect("admin/lines")->with($notification);
+        return redirect("admin-medical/lines")->with($notification);
     }
 
     /**
@@ -148,13 +148,13 @@ class LineController extends Controller
                 'message' => $msg,
                 'alert-type'=>$alertType
             );
-            return redirect("admin/lines")->with($notification);
+            return redirect("admin-medical/lines")->with($notification);
         }
         $notification=array(
             'message' => $msg,
             'alert-type'=>$alertType
         );
-        return redirect("admin/lines")->with($notification);
+        return redirect("admin-medical/lines")->with($notification);
     }
 
     /**
@@ -193,6 +193,6 @@ class LineController extends Controller
             'message' => $msg,
             'alert-type'=>$alertType
         );
-        return redirect("admin/lines")->with($notification);
+        return redirect("admin-medical/lines")->with($notification);
     }
 }
