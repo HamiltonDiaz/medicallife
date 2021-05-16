@@ -119,14 +119,18 @@
         </div>
         
         <?php if($products): ?>
-            <?php echo e($products->appends(['findprod'=>$_GET["findprod"] ,'linea'=>$_GET["linea"] ])->links()); ?>           
+            <?php if($products[0]): ?>
+                <?php if($filtro==1): ?>
+                    <?php echo e($products->appends(['findprod'=>$_GET["findprod"] ,'linea'=>$_GET["linea"] ])->links()); ?>
+
+                <?php else: ?>                    
+                    <?php echo e($products->appends(['id'=>$lineid])->links()); ?>
+
+                <?php endif; ?>
+            <?php endif; ?>
         <?php endif; ?>
         
-        <style>
-            .w-5{
-                display: none;
-            }
-        </style>
+    
 
     </div>
 </div>

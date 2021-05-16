@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
+use PhpParser\Node\Stmt\Else_;
 
 class ProductController extends Controller
 {
@@ -19,13 +20,12 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $consulta="SELECT  pr.id, pr.nombre, pr.precio, pr.referencia, pr.descripcion, pr.img, pr.active, ln.nombre AS linea, ln.id AS id_line
-        FROM medical.products pr\n
-        LEFT JOIN medical.lines ln ON ln.id = pr.line_id\n
-        WHERE pr.eliminado='0' AND ln.eliminado='0'";
-        $products=DB::select($consulta) ;
-        $lines= Line::select("id", "nombre", "descripcion", "img", "active")->where("eliminado","=",0)->get();
-        $lines= DB::select("SELECT id, nombre, descripcion, img, active	FROM medical.lines WHERE eliminado='0'");
+
+        $products=DB::table("products as pr")->select("pr.id", "pr.nombre", "pr.precio", "pr.referencia", "pr.descripcion", "pr.img", "pr.active", "ln.nombre AS linea", "ln.id AS id_line")
+        ->leftJoin("medical.lines as ln","pr.line_id","=","ln.id")
+        ->where("pr.eliminado",0)->where("ln.eliminado",0)->get();
+
+        $lines= Line::select("id", "nombre", "descripcion", "img", "active")->where("eliminado","=",0)->get();        
         return view("products.listProducts", compact('lines','products'));
     }
 
@@ -122,20 +122,21 @@ class ProductController extends Controller
 
     public function showGroup(product $product, $line)
     {
-        $consulta="SELECT pr.id, pr.nombre, pr.precio, pr.referencia, pr.descripcion, pr.img, ln.nombre AS linea
-        FROM medical.products pr\n
-        LEFT JOIN medical.lines ln ON ln.id = pr.line_id\n
-        WHERE pr.eliminado='0' AND pr.ACTIVE='on'";
-
         $filtro=2;
         if ($line>0) {
-            $consulta= $consulta . " AND line_id=$line";
             $filtro=0;
+            $products=DB::table("products as pr")->select("pr.id", "pr.nombre", "pr.precio", "pr.referencia", "pr.descripcion", "pr.img", "ln.nombre AS linea")
+            ->leftJoin("medical.lines as ln","pr.line_id","=","ln.id")
+            ->where("pr.eliminado",0)->where("ln.eliminado",0)->where("pr.line_id",$line)->paginate(2);
+
+        }else{
+            $products=DB::table("products as pr")->select("pr.id", "pr.nombre", "pr.precio", "pr.referencia", "pr.descripcion", "pr.img", "ln.nombre AS linea")
+            ->leftJoin("medical.lines as ln","pr.line_id","=","ln.id")
+            ->where("pr.eliminado",0)->where("ln.eliminado",0)->paginate(2);
         }
         $lines= Line::select("id", "nombre", "descripcion", "img", "active")->where("eliminado","=",0)->get();
-        $products= DB::select($consulta);
-        
-        return view("products.listProductUser", compact('products', 'lines', 'filtro'));
+        $lineid=$line;
+        return view("products.listProductUser", compact('products', 'lines', 'filtro','lineid'));
     }
 
     public function edit(product $product, Request $request)

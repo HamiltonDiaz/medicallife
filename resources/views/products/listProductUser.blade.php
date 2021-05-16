@@ -115,14 +115,16 @@
         </div>
         
         @if ($products)
-            {{$products->appends(['findprod'=>$_GET["findprod"] ,'linea'=>$_GET["linea"] ])->links()}}           
+            @if ($products[0])
+                @if ($filtro==1)
+                    {{$products->appends(['findprod'=>$_GET["findprod"] ,'linea'=>$_GET["linea"] ])->links()}}
+                @else                    
+                    {{$products->appends(['id'=>$lineid])->links()}}
+                @endif
+            @endif
         @endif
         
-        <style>
-            .w-5{
-                display: none;
-            }
-        </style>
+    
 
     </div>
 </div>
