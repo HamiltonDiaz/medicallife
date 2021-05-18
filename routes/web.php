@@ -35,6 +35,7 @@ Route::post('/sendcontact', [App\Http\Controllers\ContactenosController::class, 
 Route::get('/us/lines/{line}', [App\Http\Controllers\ProductController::class, 'showGroup'])->name('usproducts');
 Route::get('/us/product/{id}', [App\Http\Controllers\ProductController::class, 'show'])->name('oneproduct');
 Route::get('/us/product', [App\Http\Controllers\ProductController::class, 'filtrarProductos'])->name('filterproduct');
+Route::get('/us/productname', [App\Http\Controllers\ProductController::class, 'filtrarProductosNombre'])->name('filterproductname');
 
 //autoadmin user
 

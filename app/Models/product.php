@@ -19,4 +19,11 @@ class product extends Model
         'active',
         'line_id'
     ];
+
+    //Query Scope
+    public function scopeProduct($query, $name){
+        if($name){
+            return $query->where("nombre","LIKE","%$name%");
+        }
+    }
 }

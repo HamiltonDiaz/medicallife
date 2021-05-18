@@ -21,7 +21,7 @@ class LineController extends Controller
     {
         
         //$lines= DB::select("SELECT id, nombre, descripcion, img, active	FROM lines WHERE eliminado='0'");
-        $lines= Line::select("id", "nombre", "descripcion", "img", "active")->where("eliminado","=",0)->get();
+        $lines= Line::select("id", "nombre", "descripcion", "img", "active")->where("eliminado","=",0)->orderBy("nombre","asc")->get();
         return view("lines.listLines", compact('lines'));
         
     }

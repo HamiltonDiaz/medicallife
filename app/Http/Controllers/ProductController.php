@@ -25,40 +25,52 @@ class ProductController extends Controller
         ->leftJoin("medical.lines as ln","pr.line_id","=","ln.id")
         ->where("pr.eliminado",0)->where("ln.eliminado",0)->get();
 
-        $lines= Line::select("id", "nombre", "descripcion", "img", "active")->where("eliminado","=",0)->get();        
+        $lines= Line::select("id", "nombre", "descripcion", "img", "active")->where("eliminado","=",0)->orderBy("nombre","asc")->get();        
         return view("products.listProducts", compact('lines','products'));
     }
 
-    public function filtrarProductos(Request $request){
-        if ($request->linea){            
-            $lineas="";
-            foreach ($request->linea as $line) {
-                if ($lineas==""){
-                    $lineas=$line;    
-                }
-                if($lineas!=$line){
-                    $lineas= $lineas . ",". $line;
-                }
-            }
-            // $products=DB::select("SELECT *, (SELECT nombre FROM medical.lines where id=line_id) as linea FROM medical.products WHERE line_id IN ($lineas) AND eliminado=0 ORDER BY line_id");
+    public function filtrarProductosNombre(Request $request){
+
+        if ($request->findprod) {
+            $nameProduct=$request->findprod;
             $products=DB::table("products as pr")
             ->select("*",
-            DB::raw("(SELECT ln.nombre FROM medical.lines as ln where ln.id=pr.line_id) as linea"))
-            ->whereIn("pr.line_id",$request->linea)->where("pr.eliminado",0)
-            ->orderBy("pr.line_id")->paginate(2);
+            DB::raw("(SELECT ln.nombre FROM medical.lines as ln where ln.id=pr.line_id) as linea"))            
+            ->where("pr.eliminado",0)            
+            ->where("pr.nombre","LIKE","%$nameProduct%")
+            ->orderBy("linea","asc")
+            ->orderBy("pr.nombre","asc")->paginate(10);
         }else{
             $products=array();
         }
         
         $filtro=1;
-        $lines= Line::select("id", "nombre", "descripcion", "img", "active")->where("eliminado","=",0)->get();
+        $lines= Line::select("id", "nombre", "descripcion", "img", "active")->where("eliminado","=",0)->orderBy("nombre","asc")->get();
+        return view("products.listProductUser", compact('products', 'lines','filtro'));
+    }
+
+
+    public function filtrarProductos(Request $request){
+
+        if ($request->linea){            
+            $products=DB::table("products as pr")
+            ->select("*",
+            DB::raw("(SELECT ln.nombre FROM medical.lines as ln where ln.id=pr.line_id) as linea"))
+            ->whereIn("pr.line_id",$request->linea)
+            ->where("pr.eliminado",0)
+            ->orderBy("linea")->orderBy("pr.nombre","asc")->paginate(10);
+        }else{
+            $products=array();
+        }
+        
+        $filtro=1;
+        $lines= Line::select("id", "nombre", "descripcion", "img", "active")->where("eliminado","=",0)->orderBy("nombre","asc")->get();
         return view("products.listProductUser", compact('products', 'lines','filtro'));
     }
 
     public function create()
     {
-        //$lines= DB::select("SELECT id, nombre, descripcion, img, active	FROM lines  WHERE eliminado='0'");
-        $lines= Line::select("id", "nombre", "descripcion", "img", "active")->where("eliminado","=",0)->get();
+        $lines= Line::select("id", "nombre", "descripcion", "img", "active")->where("eliminado","=",0)->orderBy("nombre","asc")->get();
         return view('products.createProducts',compact('lines'));
     }
 
@@ -127,14 +139,14 @@ class ProductController extends Controller
             $filtro=0;
             $products=DB::table("products as pr")->select("pr.id", "pr.nombre", "pr.precio", "pr.referencia", "pr.descripcion", "pr.img", "ln.nombre AS linea")
             ->leftJoin("medical.lines as ln","pr.line_id","=","ln.id")
-            ->where("pr.eliminado",0)->where("ln.eliminado",0)->where("pr.line_id",$line)->paginate(2);
+            ->where("pr.eliminado",0)->where("ln.eliminado",0)->where("pr.line_id",$line)->orderBy("ln.nombre","asc")->orderBy("pr.nombre","asc")->paginate(10);
 
         }else{
             $products=DB::table("products as pr")->select("pr.id", "pr.nombre", "pr.precio", "pr.referencia", "pr.descripcion", "pr.img", "ln.nombre AS linea")
             ->leftJoin("medical.lines as ln","pr.line_id","=","ln.id")
-            ->where("pr.eliminado",0)->where("ln.eliminado",0)->paginate(2);
+            ->where("pr.eliminado",0)->where("ln.eliminado",0)->orderBy("ln.nombre","asc")->orderBy("pr.nombre","asc")->paginate(10);
         }
-        $lines= Line::select("id", "nombre", "descripcion", "img", "active")->where("eliminado","=",0)->get();
+        $lines= Line::select("id", "nombre", "descripcion", "img", "active")->where("eliminado","=",0)->orderBy("nombre","asc")->get();
         $lineid=$line;
         return view("products.listProductUser", compact('products', 'lines', 'filtro','lineid'));
     }
