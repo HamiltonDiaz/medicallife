@@ -21,7 +21,21 @@ Route::prefix('/admin-medical')->middleware(['auth'])->group( function(){
     Route::get('/products/create', [App\Http\Controllers\ProductController::class, 'create'])->name('createproduct');
     Route::post('/products/create', [App\Http\Controllers\ProductController::class, 'store'])->name('storeproduct');
     Route::post('/products/edit', [App\Http\Controllers\ProductController::class, 'edit'])->name('editproduct');
-    Route::get('/products/delete/{id}', [App\Http\Controllers\ProductController::class, 'destroy'])->name('destroyline');
+    Route::get('/products/delete/{id}', [App\Http\Controllers\ProductController::class, 'destroy'])->name('destroyproduct');
+
+    //-Usuarios
+    //Listar
+    Route::get('/users-admin', [App\Http\Controllers\UsuariosController::class, 'index'])->name('users-admin');
+    //Mostrar formualrio
+    Route::get('/users-admin/create', [App\Http\Controllers\UsuariosController::class, 'create'])->name('create-user');
+    //Crear
+    Route::post('/users-admin/create', [App\Http\Controllers\UsuariosController::class, 'store'])->name('store-user');
+    //Editar
+    Route::post('/users-admin/edit', [App\Http\Controllers\UsuariosController::class, 'edit'])->name('edit-user');
+    //Eliminar
+    Route::get('/users-admin/delete/{id}', [App\Http\Controllers\UsuariosController::class, 'destroy'])->name('destroy-user');
+
+
 });
 
 

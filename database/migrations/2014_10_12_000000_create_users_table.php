@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('dpto');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->integer('eliminado');
             $table->rememberToken();
             $table->timestamps();
         });

@@ -25,6 +25,7 @@ class User extends Authenticatable
         'telefono',
         'ciudad',
         'dpto',
+        'eliminado',
     ];
 
     /**
@@ -56,6 +57,8 @@ class User extends Authenticatable
     {
         $this->notify(new ResetPasswordNotification($token));
     }
+
+    
 
 
 }

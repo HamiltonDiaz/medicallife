@@ -21,7 +21,9 @@ class UserSeeder extends Seeder
                 'telefono'=>"SIN TELEFONO",
                 'ciudad'=>"SIN CIUDAD",
                 'dpto'=>"SIN DEPARTAMENTO",
-                'password'=>\Hash::make("1075251751")
+                'password'=>\Hash::make("1075251751"),
+                'eliminado' => 0,
+                
             ],
             [
                 'name'=>"lisseth",
@@ -29,7 +31,8 @@ class UserSeeder extends Seeder
                 'telefono'=>"SIN TELEFONO",
                 'ciudad'=>"SIN CIUDAD",
                 'dpto'=>"SIN DEPARTAMENTO",
-                'password'=>\Hash::make("1075251751")
+                'password'=>\Hash::make("1075251751"),
+                'eliminado' => 0,
             ],
         );
 

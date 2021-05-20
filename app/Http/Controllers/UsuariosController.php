@@ -4,11 +4,120 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Contracts\Auth\UserProvider;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use SebastianBergmann\CodeCoverage\CrapIndex;
 
 class UsuariosController extends Controller
 {
+    public function index(){
+        $users= User::all()->where("eliminado","=",0);        
+        return view("users.listUser", compact('users'));
+    }
+
+    public function store(Request $request)
+    {
+        //dd($request);
+        $alertType="success";
+        $msg="Creado exitosamente!\\n";
+
+        $telefono="SIN TELEFONO";
+        if ($request->input('telefono')) {
+            $telefono=$request->input('telefono');
+        }
+
+        $ciudad="SIN CIUDAD";
+        if ($request->input('ciudad')) {
+            $ciudad=$request->input('ciudad');
+        }
+
+        $dpto="SIN DEPARTAMENTO";
+        if ($request->input('dpto')) {
+            $dpto=$request->input('dpto');
+        }
+
+     
+        $email=$request->input('email');
+        $emaildb= User::where("email","=", $email)->get()->first();
+ 
+
+        if ($request->input('name') && $request->input('email') && $request->input('pass') && !$emaildb) {
+            $user= User::create([
+                'name' => $request->input('name'),
+                'email' =>$email,
+                'telefono' => $telefono,
+                'ciudad' => $ciudad,
+                'dpto' => $dpto,
+                'password' => Hash::make($request->input('pass')),
+                'eliminado'=>0,
+            ]);
+            $user->save();
+        }else{
+            $alertType="error";
+            $msg="¡Error al crear el registro!\\n";
+            if ($emaildb) {
+                $msg=$msg . "Email duplicado";
+            }
+            $notification=array(
+                'message' => $msg,
+                'alert-type'=>$alertType
+            );
+            return redirect("admin-medical/users-admin")->with($notification);
+        }
+        $notification=array(
+            'message' => $msg,
+            'alert-type'=>$alertType
+        );
+        return redirect("admin-medical/users-admin")->with($notification);
+    }
+
+    public function edit(Request $request)
+    {
+        $alertType="success";
+        $msg="Modificado exitosamente!\\n";
+
+        $active=$request->input('activeold');
+        if ($request->input('active')) {
+            $active=$request->input('active');
+        }
+
+        $precio="";
+        if ($request->input('precio')) {
+            $precio=$request->input('precio');
+        }
+
+        $descrip="";
+        if ($request->input('descrip')) {
+            $descrip=$request->input('descrip');
+        }
+
+        if ($request->input('name') && $request->input('linea')  && $request->input('id') && $request->input('referencia') ) {
+            User::whereId($request->input('id'))->update([
+                'name' => $request->input('name'),
+                'email' =>$email,
+                'telefono' => $telefono,
+                'ciudad' => $ciudad,
+                'dpto' => $dpto,
+                'password' => Hash::make($request->input('pass')),
+                'eliminado'=>0,
+            ]);
+        }else{
+            $alertType="error";
+            $msg="¡Error al modificar el registro!\\n";
+            $notification=array(
+                'message' => $msg,
+                'alert-type'=>$alertType
+            );
+            return redirect("admin-medical/users-admin")->with($notification);
+        }
+        $notification=array(
+            'message' => $msg,
+            'alert-type'=>$alertType
+        );
+        return redirect("admin-medical/users-admin")->with($notification);
+    }
+    
     public function cambiarContra(Request $request )
     {
         $input=$request->all();
@@ -61,6 +170,28 @@ class UsuariosController extends Controller
         
         return back()->with('status',"Actualización exitosa");
     }
+
+    public function destroy($id)
+    {
+        $alertType="warning";
+        $msg="¡Se ha ELminado!\\n";
+
+        if ($id){
+           User::whereId($id)->update([
+                'eliminado' => "1",
+            ]);
+        }else{
+            $alertType="error";
+            $msg="¡No se pudo eliminar!\\n";
+        }
+
+        $notification=array(
+            'message' => $msg,
+            'alert-type'=>$alertType
+        );
+        return redirect("admin-medical/users-admin")->with($notification);
+    }
+
 
 
 }

@@ -163,7 +163,7 @@
   background-image: url("../img/intrumental.jpg");
   background-position: center; /* Center the image */
   background-size: cover; /* Resize the background image to cover the entire container */
-  height: 85vh;  
+  height: 600px;  
   padding-top: 10%;
 }
 

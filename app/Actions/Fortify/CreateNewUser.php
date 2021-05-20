@@ -39,6 +39,7 @@ class CreateNewUser implements CreatesNewUsers
             'telefono' =>'SIN TELEFONO',
             'ciudad' =>'SIN CIUDAD',
             'dpto' =>'SIN DEPARTAMENTO',
+            'eliminado'=>0,
         ]);
     }
 }

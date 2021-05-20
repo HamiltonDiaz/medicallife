@@ -35,10 +35,10 @@
                     <a href="#menuUser" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Usuarios</a>
                     <ul class="collapse list-unstyled" id="menuUser">
                         <li>
-                            <a href="#">Ver Usuarios</a>
+                            <a href="{{Route("users-admin")}}">Ver Usuarios</a>
                         </li>
                         <li>
-                            <a href="#">Crear Usuario</a>
+                            <a href="{{Route("create-user")}}">Crear Usuario</a>
                         </li>
                         
                     </ul>
