@@ -37,9 +37,9 @@
                         <li>
                             <a href="{{Route("users-admin")}}">Ver Usuarios</a>
                         </li>
-                        <li>
+                        {{-- <li>
                             <a href="{{Route("create-user")}}">Crear Usuario</a>
-                        </li>
+                        </li> --}}
                         
                     </ul>
                 </li>

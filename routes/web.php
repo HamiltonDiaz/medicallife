@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 //Vistas administrador
 Route::prefix('/admin-medical')->middleware(['auth'])->group( function(){
@@ -24,7 +25,7 @@ Route::prefix('/admin-medical')->middleware(['auth'])->group( function(){
     Route::get('/products/delete/{id}', [App\Http\Controllers\ProductController::class, 'destroy'])->name('destroyproduct');
 
     //-Usuarios
-    //Listar
+    //Listar    
     Route::get('/users-admin', [App\Http\Controllers\UsuariosController::class, 'index'])->name('users-admin');
     //Mostrar formualrio
     Route::get('/users-admin/create', [App\Http\Controllers\UsuariosController::class, 'create'])->name('create-user');
@@ -34,6 +35,7 @@ Route::prefix('/admin-medical')->middleware(['auth'])->group( function(){
     Route::post('/users-admin/edit', [App\Http\Controllers\UsuariosController::class, 'edit'])->name('edit-user');
     //Eliminar
     Route::get('/users-admin/delete/{id}', [App\Http\Controllers\UsuariosController::class, 'destroy'])->name('destroy-user');
+    
 
 
 });

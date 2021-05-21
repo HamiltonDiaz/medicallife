@@ -16,6 +16,8 @@
                         <img id="viewimg{{ $product->id }}" width="250px" height="300px"
                             src="{{ asset('storage/img') }}/{{ $product->img }} " alt="Sin imagen">
                     </div>
+                    <small>*Esta una imagen de referencia, puede presentar variaciones.*</small>
+                    <h6><b>Referencia:</b> {{ $product->referencia}}</h6>                    
                     <h6><b>Descripción:</b></h6>
                     <p style="word-break: break-all !important;"> {{ $product->descripcion }}</p>
 

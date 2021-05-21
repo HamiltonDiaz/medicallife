@@ -16,6 +16,8 @@
                         <img id="viewimg<?php echo e($product->id); ?>" width="250px" height="300px"
                             src="<?php echo e(asset('storage/img')); ?>/<?php echo e($product->img); ?> " alt="Sin imagen">
                     </div>
+                    <small>*Esta una imagen de referencia, puede presentar variaciones.*</small>
+                    <h6><b>Referencia:</b> <?php echo e($product->referencia); ?></h6>                    
                     <h6><b>Descripción:</b></h6>
                     <p style="word-break: break-all !important;"> <?php echo e($product->descripcion); ?></p>
 

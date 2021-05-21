@@ -37,9 +37,7 @@
                         <li>
                             <a href="<?php echo e(Route("users-admin")); ?>">Ver Usuarios</a>
                         </li>
-                        <li>
-                            <a href="<?php echo e(Route("create-user")); ?>">Crear Usuario</a>
-                        </li>
+                        
                         
                     </ul>
                 </li>

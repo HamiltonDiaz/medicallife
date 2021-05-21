@@ -16,22 +16,31 @@ class UserSeeder extends Seeder
     {
         $users= array(
             [
-                'name'=>"hamilton",
+                'name'=>"admin-hamilton",
                 'email'=>"diaz3220@hotmail.com",
-                'telefono'=>"SIN TELEFONO",
-                'ciudad'=>"SIN CIUDAD",
-                'dpto'=>"SIN DEPARTAMENTO",
+                'telefono'=>"3212479078",
+                'ciudad'=>"Neiva",
+                'dpto'=>"Huila",
                 'password'=>\Hash::make("1075251751"),
                 'eliminado' => 0,
                 
             ],
             [
-                'name'=>"lisseth",
+                'name'=>"admin-lisseth",
                 'email'=>"liyafi1210@hotmail.com",
                 'telefono'=>"SIN TELEFONO",
-                'ciudad'=>"SIN CIUDAD",
-                'dpto'=>"SIN DEPARTAMENTO",
+                'ciudad'=>"Neiva",
+                'dpto'=>"Huila",
                 'password'=>\Hash::make("1075251751"),
+                'eliminado' => 0,
+            ],
+            [
+                'name'=>"admin-medical",
+                'email'=>"administracion@medicallife.com.co",
+                'telefono'=>"SIN TELEFONO",
+                'ciudad'=>"Neiva",
+                'dpto'=>"Huila",
+                'password'=>\Hash::make("medical1234"),
                 'eliminado' => 0,
             ],
         );

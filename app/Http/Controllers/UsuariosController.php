@@ -77,34 +77,55 @@ class UsuariosController extends Controller
         $alertType="success";
         $msg="Modificado exitosamente!\\n";
 
-        $active=$request->input('activeold');
-        if ($request->input('active')) {
-            $active=$request->input('active');
-        }
+        $email=$request->input('email');
+        $emaildb= User::where("email","=", $email)->where("id","!=",$request->input('id'))->get()->first();
 
-        $precio="";
-        if ($request->input('precio')) {
-            $precio=$request->input('precio');
-        }
 
-        $descrip="";
-        if ($request->input('descrip')) {
-            $descrip=$request->input('descrip');
-        }
+        if ($request->input('id') && !$emaildb) {
+            $datosActuales=User::whereId($request->input('id'))->get()->first();
+            
+            $name=$datosActuales->name;
+            if ($request->input('name')) {
+                $name=$request->input('name');
+            }
 
-        if ($request->input('name') && $request->input('linea')  && $request->input('id') && $request->input('referencia') ) {
+            $telefono=$datosActuales->telefono;
+            if ($request->input('telefono')) {
+                $telefono=$request->input('telefono');
+            }
+
+             $ciudad=$datosActuales->ciudad;
+            if ($request->input('ciudad')) {
+                $ciudad=$request->input('ciudad');
+            }
+         
+            $dpto=$datosActuales->dpto;
+            if ($request->input('dpto')) {
+                $dpto=$request->input('dpto');
+            }     
+    
+            if ($request->input('pass')) {
+                User::whereId($request->input('id'))->update([
+                   'password' => Hash::make($request->input('pass')),
+                ]);
+            }            
+
             User::whereId($request->input('id'))->update([
-                'name' => $request->input('name'),
+                'name' => $name,
                 'email' =>$email,
                 'telefono' => $telefono,
                 'ciudad' => $ciudad,
-                'dpto' => $dpto,
-                'password' => Hash::make($request->input('pass')),
+                'dpto' => $dpto,                
                 'eliminado'=>0,
             ]);
+            
+            
         }else{
             $alertType="error";
             $msg="¡Error al modificar el registro!\\n";
+            if ($emaildb) {
+                $msg=$msg . "Email duplicado";
+            }
             $notification=array(
                 'message' => $msg,
                 'alert-type'=>$alertType
