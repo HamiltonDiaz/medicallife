@@ -1,18 +1,17 @@
-@extends('layouts.app')
-@section('content')
+<?php $__env->startSection('content'); ?>
 <div class="container">
     <div class="row py-3 px-3 ">
         <div class="col-lg-6">
-            @if (Session::has('status'))
+            <?php if(Session::has('status')): ?>
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    <strong>{{Session::get('status')}}</strong>
+                    <strong><?php echo e(Session::get('status')); ?></strong>
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
                 </div>                       
-            @endif
-            <form class="row g-3 needs-validation" novalidate action="{{route("sendcontact")}}" method="POST" >
-                @csrf
+            <?php endif; ?>
+            <form class="row g-3 needs-validation" novalidate action="<?php echo e(route("sendcontact")); ?>" method="POST" >
+                <?php echo csrf_field(); ?>
                 <div class="col-lg-12 col-md-12 col-sm-12 col-12">
                     <label for="nombre" class="form-label">Nombre o Razón Social</label>
                     <input type="text" class="form-control" id="nombre" name="nombre" required>
@@ -75,7 +74,7 @@
         </div>
         <div class="col-lg-5 text-center">
             <div class="col-lg-12 col-md-12 col-sm-12 col-12">
-                <img class="logo-medical-contact" src="{{ asset('img/logo.png')}} " alt="Logo">
+                <img class="logo-medical-contact" src="<?php echo e(asset('img/logo.png')); ?> " alt="Logo">
             </div>
             
             <div class="col-lg-12 col-md-12 col-sm-12 col-12">
@@ -98,15 +97,17 @@
                     <b>Síguenos en:</b>  
                 </h5>
                 <a href="https://www.facebook.com/medical.lif"><img class="redes"
-                        src="{{ asset('img/facebook.png')}} " alt="facebook"></a>
+                        src="<?php echo e(asset('img/facebook.png')); ?> " alt="facebook"></a>
                 <a href="https://www.facebook.com/medical.lif"><img class="redes"
-                        src="{{ asset('img/instagram.png')}} " alt="facebook"></a>
+                        src="<?php echo e(asset('img/instagram.png')); ?> " alt="facebook"></a>
                 <a href="https://www.facebook.com/medical.lif"><img class="redes"
-                        src="{{ asset('img/whatsapp.png')}} " alt="facebook"></span></a>
+                        src="<?php echo e(asset('img/whatsapp.png')); ?> " alt="facebook"></span></a>
             </div>
         </div>
     </div>
     
 </div>
 
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\GoogleDrive\Repositorios\medicallife\resources\views/contact.blade.php ENDPATH**/ ?>

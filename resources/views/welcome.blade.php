@@ -1,16 +1,7 @@
 @extends('layouts.app')
 @section('content')
-    <div class="back-inicio" id="inicio">
-        <div class="row" >            
-            <div class="col-lg-7 col-md-7 col-sm-12 col-12"></div>
-            <div class="col-lg-5 col-md-5 col-sm-12 col-12 text-center" style="" >                
-                <img class="logo-medical-inicio" src="{{asset('img/logo.png')}} " alt="Logo">                
-                <p class="parrafo-inicio">
-                    Es una empresa Colombiana dedicada a la comercialización
-                    y distribución de material médico.
-                </p>
-            </div>
-        </div>
+    <div class="" id="inicio">
+        <img  class="img-fluid" src="{{asset('img/intrumental.jpg')}}" alt="">
     </div>
 
     <div id="productos"></div>

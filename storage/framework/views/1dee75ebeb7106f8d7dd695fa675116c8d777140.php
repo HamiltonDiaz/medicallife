@@ -4,7 +4,7 @@
             
             <?php if(Request::path()!="login" and Request::path()!="register" and Request::path()!="home" ): ?>
                 <a class="navbar-brand " href="<?php echo e(url('/')); ?>">
-                    <img  class="logo-medical collapse navbar-collapse " src="<?php echo e(asset('img/logo.png')); ?> " alt="Logo" >
+                    <img  class="logo-medical collapse navbar-collapse" src="<?php echo e(asset('img/logo.png')); ?> " alt="Logo" >
                 </a>
             <?php endif; ?>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

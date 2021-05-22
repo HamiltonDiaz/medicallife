@@ -159,13 +159,6 @@
 /*fin estilos login y register*/
 
 
-.back-inicio{
-  background-image: url("../img/intrumental.jpg");
-  background-position: center; /* Center the image */
-  background-size: cover; /* Resize the background image to cover the entire container */
-  height: 600px;  
-  padding-top: 10%;
-}
 
 .redes{
   height: 50px;
@@ -208,16 +201,8 @@
 }
 
 
-@media screen and (max-width: 1024px) {
-  /*pc pequeños*/
-  .back-inicio{
-    background-image: url("../img/intrumental.jpg");
-    background-position: center; /* Center the image */
-    background-size: cover; /* Resize the background image to cover the entire container */
-    height: 40vh;  
-    padding-top: 20%;
-  }  
-}
+
+
 
 @media screen and (max-width: 576px) {
   /*teléfonos*/
