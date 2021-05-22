@@ -19,20 +19,17 @@
     </div>   
     
     <div class="container">
-        <div class="d-flex justify-content-center aling-items-center">
-            <div class="card-deck ">
-                @foreach ($lines as $item)   
-                    <div class="card" style="max-width: 15rem;" >
-                        <img src="{{asset('storage/img')}}/{{$item->img}} " class="card-img-top" alt="..." height="180">
-                        <div class="card-body ">
-                            <h4 class="card-title text-center">{{$item->nombre}}</h4>
-                            <p class="card-text text-truncate"> {{$item->descripcion}}</p>                        
-                        </div>
-                        <div class="text-center py-2"><a href="/us/lines/{{$item->id}}" class="btn bg-registro">Ver más</a></div>
+        <div class="row d-flex justify-content-center aling-items-center">        
+            @foreach ($lines as $item)   
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12 col-12 card mx-1" style="max-width: 12rem;" >
+                    <img src="{{asset('storage/img')}}/{{$item->img}} " class="card-img-top mt-2" alt="..." height="150">
+                    <h5 class="card-title text-center">{{$item->nombre}}</h5>
+                    <div class="card-body p-0 ">
+                        <small><p class="card-text text-truncate"> {{$item->descripcion}}</p></small>
                     </div>
-                @endforeach
-            
-            </div>
+                    <div class="text-center py-2"><a href="/us/lines/{{$item->id}}" class="btn bg-registro">Ver más</a></div>
+                </div>
+            @endforeach
         </div>  
     </div>
 

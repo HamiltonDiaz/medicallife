@@ -112,6 +112,7 @@
                             <?php else: ?>
                                 <?php echo e($products[0]->linea); ?>
 
+                                <h6 class="container"><?php echo e($products[0]->desclinea); ?></h6>
                             <?php endif; ?>
                         </h1>
                     </div>

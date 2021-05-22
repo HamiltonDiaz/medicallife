@@ -107,6 +107,7 @@
                                 {{ 'Todos' }}
                             @else
                                 {{ $products[0]->linea }}
+                                <h6 class="container">{{ $products[0]->desclinea }}</h6>
                             @endif
                         </h1>
                     </div>
