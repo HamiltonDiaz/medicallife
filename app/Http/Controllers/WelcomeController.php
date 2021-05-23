@@ -17,7 +17,7 @@ class WelcomeController extends Controller
     public function index()
     {
         $lines= Line::where("eliminado","=",'0')->get();
-        //$lines= DB::select("SELECT id, nombre, descripcion, img	FROM medical.lines WHERE eliminado='0'");
+        
         return view("welcome", compact('lines'));
         
     }

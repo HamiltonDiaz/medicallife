@@ -3,6 +3,18 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
+// //para crear el storage link en el servidor
+// Route::get('/storage-link', function(){
+//     if(file_exists(public_path('storage'))){
+//         return 'The public/storage directory already exist';
+//     }
+    
+//     app('files')->link(
+//         storage_path("app/public"), public_path('storage')
+//     );
+// });
+
+
 //Vistas administrador
 Route::prefix('/admin-medical')->middleware(['auth'])->group( function(){
     Route::get('/', function () {
@@ -35,12 +47,8 @@ Route::prefix('/admin-medical')->middleware(['auth'])->group( function(){
     Route::post('/users-admin/edit', [App\Http\Controllers\UsuariosController::class, 'edit'])->name('edit-user');
     //Eliminar
     Route::get('/users-admin/delete/{id}', [App\Http\Controllers\UsuariosController::class, 'destroy'])->name('destroy-user');
-    
-
 
 });
-
-
 
 
 //Vistas Usuario

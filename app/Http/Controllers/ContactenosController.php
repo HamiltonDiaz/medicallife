@@ -21,8 +21,7 @@ class ContactenosController extends Controller
     public function index()
     {
 
-        $lines= Line::select("id", "nombre", "descripcion", "img", "active")->where("eliminado","=",0)->orderBy("nombre","asc")->get();
-        //$lines= DB::select("SELECT id, nombre, descripcion, img, active FROM medical.lines  WHERE eliminado='0'");
+        $lines= Line::select("id", "nombre", "descripcion", "img", "active")->where("eliminado","=",0)->orderBy("nombre","asc")->get();        
         return view("contact", compact('lines'));
         
     }
