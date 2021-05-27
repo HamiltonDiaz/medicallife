@@ -17,9 +17,9 @@
                             src="<?php echo e(asset('storage/img')); ?>/<?php echo e($product->img); ?> " alt="Sin imagen">
                     </div>
                     <small>*Esta una imagen de referencia, puede presentar variaciones.*</small>
-                    <h6><b>Referencia:</b> <?php echo e($product->referencia); ?></h6>                    
-                    <h6><b>Descripción:</b></h6>
-                    <p style="word-break: break-all !important;"> <?php echo e($product->descripcion); ?></p>
+                    <h6><b>Referencia:</b> <?php echo e($product->referencia); ?></h6>   
+
+                    <p style="text-align:justify"> <b>Descripción:</b><?php echo e($product->descripcion); ?></p>
 
                     <div class="text-right">
                         <b>Precio:</b>
@@ -140,7 +140,7 @@
                                 src="<?php echo e(asset('storage/img')); ?>/<?php echo e($product->img); ?> " alt="...">
                         </div>
                         <div class="card-body">
-                            <h4 class="card-title text-center"><?php echo e($product->nombre); ?></h4>
+                            <h6 class="card-title text-center text-uppercase"><?php echo e($product->nombre); ?></h6>
                             <p class="card-text text-truncate"> <?php echo e($product->descripcion); ?></p>
                             <p><small>Linea: <?php echo e($product->linea); ?></small> </p>
                             <div class="text-center my-2">

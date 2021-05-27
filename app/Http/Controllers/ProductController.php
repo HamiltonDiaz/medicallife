@@ -35,7 +35,7 @@ class ProductController extends Controller
             $nameProduct=$request->findprod;
             $products=DB::table("products as pr")
             ->select("*",
-            DB::raw("(SELECT nombre FROM" . env("DB_DATABASE") . "lines where id=pr.line_id) as linea"))            
+            DB::raw("(SELECT nombre FROM medical.lines where id=pr.line_id) as linea"))            
             ->where("pr.eliminado",0)            
             ->where("pr.nombre","LIKE","%$nameProduct%")
             ->orderBy("linea","asc")
@@ -55,10 +55,8 @@ class ProductController extends Controller
         if ($request->linea){            
             $products=DB::table("products as pr")
             ->select("*",
-            DB::raw("(SELECT nombre FROM" . env("DB_DATABASE") . "lines where id=pr.line_id) as linea")
-            ) 
-            
-              
+            DB::raw("(SELECT nombre FROM medical.lines where id=pr.line_id) as linea")
+            )
             ->whereIn("pr.line_id",$request->linea)
             ->where("pr.eliminado",0)
             ->orderBy("linea","asc")
@@ -67,7 +65,7 @@ class ProductController extends Controller
         }else{
             $products=array();
         }
-        
+                
         $filtro=1;
         $lines= Line::select("id", "nombre", "descripcion", "img", "active")->where("eliminado","=",0)->orderBy("nombre","asc")->get();
         return view("products.listProductUser", compact('products', 'lines','filtro'));
